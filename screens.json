@@ -2,20 +2,23 @@
     "welcome": {
       "content": "Welcome to the screen handler package, screens: [welcome],[form],[viewData],[exit]. Type the name of the screen to navigate."
     },
+    "hola": {
+      "content": "hola mundo"
+    },
     "form": {
         "title": "Form Screen",
         "content": "This is the form screen. Please enter your information below.",
         "fields": [
           {
-            "name": "Name:",
+            "name": "Name",
             "type": "text"
           },
           {
-            "name": "Last Name:",
+            "name": "Last Name",
             "type": "text"
           },
           {
-            "name": "Age:",
+            "name": "Age",
             "type": "number"
           }
         ],

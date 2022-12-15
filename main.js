@@ -39,34 +39,34 @@ function displayFormScreen() {
       rl.question(`${field.name}: `, (value) => {
         // Store the user's input in the userData object
         userData[field.name] = value;
-
-        rl.question(`${field.Last}`)
-
-        
   
-        // Check if we have processed all of the form fields
-        if (Object.keys(userData).length === formScreen.fields.length) {
-          // Print the save button message
-          console.log(`\nTo save your data, type "${formScreen.saveButton.text}" and press enter.`);
-  
-          // Listen for the user's response
-          rl.on("line", (input) => {
-            if (input.trim().toLowerCase() === formScreen.saveButton.text.toLowerCase()) {
-              // Save the user data to a JSON file
-              fs.writeFileSync("user-data.json", JSON.stringify(userData));
-  
-              // Close the readline interface
-              rl.close();
-            }
-          });
-  
-          // Prompt the user for input
-          rl.prompt();
-        }
+        // Prompt the user for the next field's value
+        rl.prompt();
       });
     }
+  
+    // Listen for the user's response
+    rl.on("line", (input) => {
+      // Check if we have processed all of the form fields
+      if (Object.keys(userData).length === formScreen.fields.length) {
+        // Print the save button message
+        console.log(`\nTo save your data, type "${formScreen.saveButton.text}" and press enter.`);
+  
+        // Check if the user entered the save button text
+        if (input.trim().toLowerCase() === formScreen.saveButton.text.toLowerCase()) {
+          // Save the user data to a JSON file
+          fs.writeFileSync("user-data.json", JSON.stringify(userData));
+  
+          // Close the readline interface
+          rl.close();
+        }
+      }
+    });
+  
+    // Prompt the user for input
+    rl.prompt();
   }
-
+  
 
 function displayDataScreen() {
     // Read the screens.json file and parse the JSON data
@@ -115,6 +115,17 @@ function displayExitScreen() {
   }
 
 
+function displayHello () {
+
+  const screens = JSON.parse(fs.readFileSync('./screens.json'));
+
+//get welcome screen 
+const hola = screens['hola'];
+
+console.log(colors.bgMagenta(`${hola.content}`))
+}
+
+  
 function run() {
     // Continuously prompt the user for the screen they want to display
     while (true) {
@@ -124,29 +135,35 @@ function run() {
   
       // Prompt the user for the screen Id
       rl.question("Enter the name of the screen you want to display: ", (screenId) => {
-        //check if the screen id is valid
-        if (screenId === "welcome" || screenId === "form" ||screenId === "viewData" || screenId === "exit") {
-          if (screenId === "welcome") {
+        switch (screenId) {
+          case "welcome":
             console.clear();
             displayWelcomeScreen();
-          } else if (screenId === "form") {
+            break;
+            case "hola":
+              console.clear()
+              displayHello()
+              break;
+          case "form":
             console.clear();
             displayFormScreen();
-          } else if (screenId === "exit") {
+            break;
+          case "exit":
             console.clear();
             displayExitScreen();
-          }else if (screenId === "viewData"){
+            break;
+          case "viewData":
             console.clear();
             displayDataScreen();
-          }
-        } else {
-          console.log("Invalid screen id.");
-        }  
+            break;
+          default:
+            console.log("Invalid screen id.");
+            break;
+        }
       });
       break;
     }
   }
-  
 
 module.exports = {
     run,
