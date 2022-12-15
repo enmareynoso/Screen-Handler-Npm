@@ -1,0 +1,26 @@
+{
+  "name": "screen-handler",
+  "version": "1.0.0",
+  "description": "npm package ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enmareynoso/Screen-Handler-Npm.git"
+  },
+  "keywords": [
+    "Handler"
+  ],
+  "author": "Enmanuel Reynoso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enmareynoso/Screen-Handler-Npm/issues"
+  },
+  "homepage": "https://github.com/enmareynoso/Screen-Handler-Npm#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "fs": "^0.0.1-security"
+  }
+}

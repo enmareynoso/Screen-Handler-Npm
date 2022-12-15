@@ -1,0 +1,23 @@
+ // Creating readline interface
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Read the screens.json file and parse the JSON data
+const screens = JSON.parse(fs.readFileSync("screens.json"));
+
+// Prompt the user for their name
+rl.question("Name: ", (name) => {
+  // Store the user's input in the userData object
+  userData["name"] = name;
+
+  // ...
+});
+
+// Save the user data to a JSON file
+fs.writeFileSync("user-data.json", JSON.stringify(userData));
+
+
+In these examples, the rl variable is used to prompt the user for their name and listen for the user's response.
+ The fs variable is used to read the screens.json file and write the user data to the user-data.json file.
