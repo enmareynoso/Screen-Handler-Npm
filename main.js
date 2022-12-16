@@ -19,53 +19,67 @@ const welcomeScreen = screens['welcome'];
 console.log(colors.bgMagenta(`${welcomeScreen.content}`))
 }
 
-function displayFormScreen() {
-    // Read the screens.json file and parse the JSON data
-    const screens = JSON.parse(fs.readFileSync("screens.json"));
-  
-    // Get the form screen data
-    const formScreen = screens["form"];
-  
-    // Print the form screen title and content
-    console.log(formScreen.title);
-    console.log(formScreen.content);
-  
-    // Define an object to store the user's form data
-    const userData = {};
-  
-    // Loop through the form fields
-    for (const field of formScreen.fields) {
-      // Prompt the user for the field's value
-      rl.question(`${field.name}: `, (value) => {
-        // Store the user's input in the userData object
-        userData[field.name] = value;
-  
-        // Prompt the user for the next field's value
-        rl.prompt();
-      });
-    }
-  
-    // Listen for the user's response
-    rl.on("line", (input) => {
-      // Check if we have processed all of the form fields
-      if (Object.keys(userData).length === formScreen.fields.length) {
-        // Print the save button message
-        console.log(`\nTo save your data, type "${formScreen.saveButton.text}" and press enter.`);
-  
-        // Check if the user entered the save button text
-        if (input.trim().toLowerCase() === formScreen.saveButton.text.toLowerCase()) {
-          // Save the user data to a JSON file
-          fs.writeFileSync("user-data.json", JSON.stringify(userData));
-  
-          // Close the readline interface
-          rl.close();
-        }
-      }
+async function displayFormScreen() {
+  // Read the screens.json file and parse the JSON data
+  const screens = JSON.parse(fs.readFileSync("screens.json"));
+
+  // Get the form screen data
+  const formScreen = screens["form"];
+
+  // Print the form screen title and content
+  console.log(formScreen.title);
+  console.log(formScreen.content);
+
+  // Define an object to store the user's form data
+  const userData = {};
+
+  // Loop through the form fields
+  for (const field of formScreen.fields) {
+    // Prompt the user for the field's value
+    userData[field.name] = await new Promise((resolve) => {
+      rl.question(`${field.name}: `, resolve);
     });
-  
-    // Prompt the user for input
+  }
+
+  // Print the save button message
+  console.log(`\nTo save your data, type "${formScreen.saveButton.text}" and press enter.`);
+
+  // Prompt the user for the save button text
+  const saveButtonText = await new Promise((resolve) => {
+    rl.question(`${formScreen.saveButton.text}: `, resolve);
+  });
+
+  // Check if the user entered the save button text
+  if (saveButtonText.trim().toLowerCase() === formScreen.saveButton.text.toLowerCase()) {
+    // Read the contents of the user-data.json file
+    let data = fs.readFileSync("user-data.json");
+
+    // Parse the contents of the file into a JavaScript object
+    data = JSON.parse(data);
+
+    // Check if the data is an array
+    if (!Array.isArray(data)) {
+      // If the data is not an array, create a new array and add the existing data to it
+      data = [data];
+    }
+
+    // Add the new user data to the array
+    data.push(userData);
+
+    // Stringify the array and write it back to the file
+    fs.writeFileSync("user-data.json", JSON.stringify(data));
+
+    // Close the readline interface
+    rl.close();
+  } else {
+    // Otherwise, print an error message and prompt the user for the save button text again
+    console.log("Invalid input. Please try again.");
     rl.prompt();
   }
+}
+
+
+
   
 
 function displayDataScreen() {
@@ -115,15 +129,6 @@ function displayExitScreen() {
   }
 
 
-function displayHello () {
-
-  const screens = JSON.parse(fs.readFileSync('./screens.json'));
-
-//get welcome screen 
-const hola = screens['hola'];
-
-console.log(colors.bgMagenta(`${hola.content}`))
-}
 
   
 function run() {
@@ -140,10 +145,6 @@ function run() {
             console.clear();
             displayWelcomeScreen();
             break;
-            case "hola":
-              console.clear()
-              displayHello()
-              break;
           case "form":
             console.clear();
             displayFormScreen();
