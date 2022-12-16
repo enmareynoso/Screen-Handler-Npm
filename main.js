@@ -19,6 +19,8 @@ const welcomeScreen = screens['welcome'];
 console.log(colors.bgMagenta(`${welcomeScreen.content}`))
 }
 
+
+
 async function displayFormScreen() {
   // Read the screens.json file and parse the JSON data
   const screens = JSON.parse(fs.readFileSync("screens.json"));
@@ -27,7 +29,7 @@ async function displayFormScreen() {
   const formScreen = screens["form"];
 
   // Print the form screen title and content
-  console.log(formScreen.title);
+  console.log(colors.dim(formScreen.title));
   console.log(formScreen.content);
 
   // Define an object to store the user's form data
@@ -51,11 +53,15 @@ async function displayFormScreen() {
 
   // Check if the user entered the save button text
   if (saveButtonText.trim().toLowerCase() === formScreen.saveButton.text.toLowerCase()) {
-    // Read the contents of the user-data.json file
-    let data = fs.readFileSync("user-data.json");
-
-    // Parse the contents of the file into a JavaScript object
-    data = JSON.parse(data);
+    // Read the contents of the user-data.json file, if it exists
+    let data;
+    try {
+      data = fs.readFileSync("user-data.json");
+      data = JSON.parse(data);
+    } catch (error) {
+      // If the file does not exist, create a new array to store the user data
+      data = [];
+    }
 
     // Check if the data is an array
     if (!Array.isArray(data)) {
@@ -79,33 +85,15 @@ async function displayFormScreen() {
 }
 
 
-
-  
-
 function displayDataScreen() {
-    // Read the screens.json file and parse the JSON data
-    const screens = JSON.parse(fs.readFileSync("screens.json"));
-  
-    // Get the data screen data
-    const dataScreen = screens["data"];
-  
+  // Read the user-info.json file and parse the JSON data
+  const userData = JSON.parse(fs.readFileSync("user-data.json"));
 
-    console.log(dataScreen.content);
-  
-    // Check if the user-data.json file exists
-    if (fs.existsSync("user-data.json")) {
-      // Read the user data from the file and parse the JSON data
-      const userData = JSON.parse(fs.readFileSync("user-data.json"));
-  
-      // Loop through the user data object and print each field
-      for (const [key, value] of Object.entries(userData)) {
-        console.log(`${key}: ${value}`);
-      }
-    } else {
-      // Print the no data message
-      console.log(dataScreen.noDataMessage);
-    }
+  // Print the entire object using console.dir()
+  console.dir(userData, { depth: null });
 }
+
+
 
 
 function displayExitScreen() {
@@ -129,8 +117,6 @@ function displayExitScreen() {
   }
 
 
-
-  
 function run() {
     // Continuously prompt the user for the screen they want to display
     while (true) {
@@ -139,7 +125,7 @@ function run() {
       displayWelcomeScreen();
   
       // Prompt the user for the screen Id
-      rl.question("Enter the name of the screen you want to display: ", (screenId) => {
+      rl.question("Enter the name of the screen you want to display: ", async (screenId) => {
         switch (screenId) {
           case "welcome":
             console.clear();
@@ -153,7 +139,7 @@ function run() {
             console.clear();
             displayExitScreen();
             break;
-          case "viewData":
+        case "viewData":
             console.clear();
             displayDataScreen();
             break;

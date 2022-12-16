@@ -7,7 +7,7 @@
     },
     "form": {
         "title": "Form Screen",
-        "content": "This is the form screen. Please enter your information below.",
+        "content": "Please enter your information below.",
         "fields": [
           {
             "name": "Name",
@@ -20,6 +20,10 @@
           {
             "name": "Age",
             "type": "number"
+          },
+          {
+            "name": "Occupation",
+            "type": "text"
           }
         ],
         "saveButton": {
