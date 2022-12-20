@@ -7,7 +7,7 @@ This package consists of several functions for displaying different screens and 
 
 To install the package, you need to open the terminal of your code editor and run the following command:
 
-      npm install screen-handler-arch
+      npm install @enmareynoso/screen-handler
 
 # Dependecies
 
