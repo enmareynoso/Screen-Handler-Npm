@@ -1,5 +1,5 @@
 {
-  "name": "screen-handler-arch",
+  "name": "@enmareynoso/screen-handler",
   "version": "1.0.0",
   "description": "npm package ",
   "main": "main.js",
