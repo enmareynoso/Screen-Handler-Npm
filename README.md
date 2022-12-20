@@ -149,7 +149,7 @@ This function displays an exit screen to the user and prompts them to close the 
 
 ### `run()`
 
-This function continuously prompts the user for the screen they want to display and displays the corresponding screen.
+This function  prompts the user for the screen they want to display and displays the corresponding screen.
 
 ## Screens
 
