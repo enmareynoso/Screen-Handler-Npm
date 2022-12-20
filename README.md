@@ -7,7 +7,7 @@ This package consists of several functions for displaying different screens and 
 
 To install the package, you need to open the terminal of your code editor and run the following command:
 
-                    npm install screen-handler-arch
+      npm install screen-handler-arch
 
 # Dependecies
 
@@ -25,16 +25,18 @@ The following dependencies are used in this application:
 This package is a Node JS application, in order for dependencies to work you'll need to install Node JS. Here are some links to help you install Node JS on your machine:
 
 **MacOS**🍎
+
 [How to Install Node.js and NPM on Mac {Step-b-Step} (phoenixnap.com)](https://phoenixnap.com/kb/install-npm-mac)
 [Install Node.js and npm using Homebrew on OS X and macOS |> Changelog](https://changelog.com/posts/install-node-js-with-homebrew-on-os-x)
 
 **Windows**🪟
+
 [How to Install Node.js and NPM on Your Windows System (phoenixnap.com)](https://phoenixnap.com/kb/install-node-js-npm-on-windows)
 [How to Download & Install Node.js and NPM on Windows (guru99.com)](https://www.guru99.com/download-install-node-js.html)
 
 When npm is installed on your machine, run the following command to install the last dependencie ***Colors.js***
 
-                        npm install colors
+     npm install colors
                        
 
 
@@ -185,7 +187,7 @@ The program handles errors in the following ways:
 
 
 
-# Steps to use
+# Steps to use the package 
 
 
 1.  Install Node.js on your computer if it is not already installed.
@@ -202,3 +204,12 @@ The program handles errors in the following ways:
 11.  If you select the `data` screen, the application will display the data stored in the `user-data.json` file. You can delete an item from the data by entering its index and pressing enter.
 12.  If you select the `exit` screen, the application will display an exit screen and prompt you to close the program.
 
+### Considerations
+-   Make sure you have installed Node.js on your computer before running the application.
+-   The `screens.json` file and the `index.js` file must be in the same directory for the application to work correctly.
+
+-   When entering data on the `form` screen, make sure to type the `save` button text exactly as it is displayed and press enter to save your data.
+-   When deleting data on the `data` screen, make sure to enter a valid index (a positive integer) of an item in the data. If the index is invalid, an error message will be displayed.
+-   When closing the program on the `exit` screen, make sure to type "yes" and press enter to confirm that you want to close the program.
+
+- Make sure the name of the JSON files generated from the package stays with the same name, changing the JSON file name **will make the package not work properly**
