@@ -1,5 +1,5 @@
 {
-  "name": "screen-handler",
+  "name": "screen-handler-arch",
   "version": "1.0.0",
   "description": "npm package ",
   "main": "main.js",
@@ -16,7 +16,7 @@
   "author": "Enmanuel Reynoso",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/enmareynoso/Screen-Handler-Npm/issues"
+    "url": "https://github.com/enmareynoso/Screen-Handler-Npm"
   },
   "homepage": "https://github.com/enmareynoso/Screen-Handler-Npm#readme",
   "dependencies": {
