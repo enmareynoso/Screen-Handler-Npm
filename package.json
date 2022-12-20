@@ -1,7 +1,7 @@
 {
   "name": "screen-handler-arch",
   "version": "1.0.0",
-  "description": "npm package ",
+  "description": "npm package",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/enmareynoso/Screen-Handler-Npm#readme",
   "dependencies": {
     "colors": "^1.4.0",
-    "fs": "^0.0.1-security",
-    "readline": "^0.10.3"
+    "fs": "^0.0.1-security"
   }
 }
+
