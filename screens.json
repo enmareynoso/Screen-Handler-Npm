@@ -1,10 +1,8 @@
 {
     "welcome": {
-      "content": "Welcome to the screen handler package, screens: [welcome],[form],[viewData],[exit]. Type the name of the screen to navigate."
+      "content": "Welcome to the screen handler package, screens: [form], [viewData], [exit]. Type the name of the screen to navigate."
     },
-    "hola": {
-      "content": "hola mundo"
-    },
+   
     "form": {
         "title": "Form Screen",
         "content": "Please enter your information below.",
@@ -32,8 +30,7 @@
       }, 
       "viewData": {
     "title": "Data Screen",
-    "content": "This is the data screen. Your previously saved data is shown below.",
-    "noDataMessage": "There is no data to display."
+    "content": "This is the data screen. Your previously saved data is shown below."
       },
     "exit": {
         "title": "Exit Screen",
